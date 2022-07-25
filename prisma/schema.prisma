@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model TokenAccount {
+  id                Int     @id @default(autoincrement())
+  address           String  @unique
+  mintAddress       String
+  amount            String
+}
+
+model MetadataAccount {
+  id                       Int     @id @default(autoincrement())
+  address                  String  @unique
+  mintAddress              String
+  updateAuthorityAddress   String
+  data                     Json
+  editionNonce             Int?
+  tokenStandard            String?
+  collection               Json?
+}
